@@ -1,4 +1,3 @@
-
 import cdk = require('aws-cdk-lib');
 import { Stack } from 'aws-cdk-lib';
 import { Repository } from 'aws-cdk-lib/aws-ecr';
@@ -53,11 +52,11 @@ export class ECRStack extends Stack {
         }))
       }
       if (repo.rules)
-        Object.entries(repo.rules).forEach(([event, rule]) => {
-          if (rule.tagPrefix && rule.maxImageCount) {
+        repo.rules.forEach((rule) => {
+          if (rule.maxImageCount) {
             r.addLifecycleRule({ tagPrefixList: rule.tagPrefix, maxImageCount: rule.maxImageCount })
           } else if (rule.maxAge) {
-            r.addLifecycleRule({ maxImageAge: cdk.Duration.days(rule.maxAge) })
+            r.addLifecycleRule({ tagPrefixList: rule.tagPrefix, maxImageAge: cdk.Duration.days(rule.maxAge) })
           }
         })
     }

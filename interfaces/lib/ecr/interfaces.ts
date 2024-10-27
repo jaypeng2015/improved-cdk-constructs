@@ -15,7 +15,7 @@ export interface ECRRepo {
 }
 
 export interface ECRRule {
-    tagPrefix: string[];
+    tagPrefix?: string[];
     maxAge: number;
     maxImageCount: number;
 }

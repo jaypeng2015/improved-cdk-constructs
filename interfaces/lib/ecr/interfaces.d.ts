@@ -11,7 +11,7 @@ export interface ECRRepo {
     allowAccountAccess: string[];
 }
 export interface ECRRule {
-    tagPrefix: string[];
+    tagPrefix?: string[];
     maxAge: number;
     maxImageCount: number;
 }
